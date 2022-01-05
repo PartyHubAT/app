@@ -12,7 +12,7 @@
     <div>
       <label>
         Room-id
-        <input type="number" />
+        <input v-model="roomId" type="number" />
       </label>
     </div>
     <button>Join</button>
@@ -25,6 +25,7 @@ export default {
   data() {
     return {
       playerName: "",
+      roomId: 0,
     };
   },
 };
