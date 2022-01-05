@@ -8,7 +8,7 @@
         <input v-model="playerName" />
       </label>
     </div>
-    <button>Host</button>
+    <button @click="host">Host</button>
     <div>
       <label>
         Room-id
@@ -27,6 +27,11 @@ export default {
       playerName: "",
       roomId: 0,
     };
+  },
+  methods: {
+    host() {
+      this.$socket.emit("newRoom", { playerName: this.playerName });
+    },
   },
 };
 </script>
