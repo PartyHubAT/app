@@ -5,7 +5,7 @@
     <div>
       <label>
         Name
-        <input />
+        <input v-model="playerName" />
       </label>
     </div>
     <button>Host</button>
@@ -22,6 +22,11 @@
 <script>
 export default {
   name: "Home",
+  data() {
+    return {
+      playerName: "",
+    };
+  },
 };
 </script>
 
