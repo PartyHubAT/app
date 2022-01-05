@@ -15,7 +15,7 @@
         <input v-model="roomId" type="number" />
       </label>
     </div>
-    <button>Join</button>
+    <button @click="join">Join</button>
   </div>
 </template>
 
@@ -31,6 +31,12 @@ export default {
   methods: {
     host() {
       this.$socket.emit("newRoom", { playerName: this.playerName });
+    },
+    join() {
+      this.$socket.emit("joinRoom", {
+        roomId: this.roomId,
+        playerName: this.playerName,
+      });
     },
   },
 };
