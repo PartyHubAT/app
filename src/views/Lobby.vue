@@ -29,6 +29,12 @@ export default {
       return this.role === "HOST";
     },
   },
+  sockets: {
+    playersChanged(data) {
+      const { playerNames } = data;
+      this.players = playerNames.map((it) => ({ name: it }));
+    },
+  },
 };
 </script>
 
