@@ -8,6 +8,7 @@
         <li v-for="player in players" :key="player.name">{{ player.name }}</li>
       </ul>
     </div>
+    <button :disabled="!isHost">Play</button>
   </div>
 </template>
 
@@ -17,11 +18,15 @@ export default {
   data() {
     return {
       players: [],
+      role: "GUEST",
     };
   },
   computed: {
     roomId() {
       return this.$store.state.roomId;
+    },
+    isHost() {
+      return this.role === "HOST";
     },
   },
 };
