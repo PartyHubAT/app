@@ -4,7 +4,7 @@
     <iframe ref="gameContainer" id="gameContainer" :src="gameUrl"></iframe>
   </div>
 </template>
-
+<script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/master/qrcode.js"></script>
 <script>
 export default {
   name: "Game",
