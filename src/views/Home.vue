@@ -38,6 +38,16 @@ export default {
         playerName: this.playerName,
       });
     },
+    joinLobby(roomId) {
+      this.$store.commit("joinRoom", roomId);
+      this.$router.push("/lobby");
+    },
+  },
+  sockets: {
+    roomCreated(data) {
+      const { roomId } = data;
+      this.joinLobby(roomId);
+    },
   },
 };
 </script>
