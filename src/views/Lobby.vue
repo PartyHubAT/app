@@ -9,15 +9,17 @@
       </ul>
     </div>
     <game-list v-if="isHost" />
+    <selected-game v-else />
     <button :disabled="!isHost">Play</button>
   </div>
 </template>
 
 <script>
 import GameList from "../components/GameList";
+import SelectedGame from "../components/SelectedGame";
 export default {
   name: "Lobby",
-  components: { GameList },
+  components: { SelectedGame, GameList },
   data() {
     return {
       players: [],
