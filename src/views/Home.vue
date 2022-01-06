@@ -15,7 +15,7 @@
         </div>
       </div>
     </div>
-    <button @click="host">Host</button>
+    <button @click="host" :disabled="playerName == ''">Host</button>
     <div>
       <label> Room-id </label>
       <div :class="{ error: v$.roomId.$errors.length }">
@@ -56,7 +56,7 @@ export default {
   data() {
     return {
       playerName: "",
-      roomId: 123456,
+      roomId: "",
     };
   },
   methods: {
