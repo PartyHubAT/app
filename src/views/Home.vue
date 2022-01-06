@@ -1,6 +1,6 @@
 ﻿<template>
   <div>
-    <h1>PH</h1>
+    <h1>PH {{ $route.params.id }}</h1>
     <h2>Home</h2>
     <div>
       <label> Name </label>
