@@ -5,7 +5,7 @@
     <div>
       <label> Name </label>
       <div :class="{ error: v$.playerName.$errors.length }">
-        <input v-model="playerName" required />
+        <input v-model="playerName" required maxlength="64" minlength="1" />
         <div
           class="input-errors"
           v-for="error of v$.playerName.$errors"
