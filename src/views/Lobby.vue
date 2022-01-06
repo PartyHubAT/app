@@ -10,7 +10,7 @@
     </div>
     <game-list v-if="isHost" />
     <selected-game v-else />
-    <button :disabled="!isHost">Play</button>
+    <button :disabled="!isHost" @click="startGame">Play</button>
   </div>
 </template>
 
@@ -34,6 +34,11 @@ export default {
       return this.role === "HOST";
     },
   },
+  methods: {
+    startGame() {
+      this.$socket.emit("startGame", {});
+    },
+  },
   sockets: {
     playersChanged(data) {
       const { playerNames } = data;
@@ -42,6 +47,11 @@ export default {
     roleChanged(data) {
       const { role } = data;
       this.role = role;
+    },
+    gameStarted(data) {
+      const { gameName } = data;
+      this.$store.commit("startGame", gameName);
+      this.$router.push("/game");
     },
   },
 };
