@@ -8,13 +8,16 @@
         <li v-for="player in players" :key="player.name">{{ player.name }}</li>
       </ul>
     </div>
+    <game-list v-if="isHost" />
     <button :disabled="!isHost">Play</button>
   </div>
 </template>
 
 <script>
+import GameList from "../components/GameList";
 export default {
   name: "Lobby",
+  components: { GameList },
   data() {
     return {
       players: [],
