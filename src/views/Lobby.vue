@@ -34,6 +34,10 @@ export default {
       const { playerNames } = data;
       this.players = playerNames.map((it) => ({ name: it }));
     },
+    roleChanged(data) {
+      const { role } = data;
+      this.role = role;
+    },
   },
 };
 </script>
