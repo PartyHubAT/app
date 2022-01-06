@@ -2,39 +2,70 @@
   <div>
     <h1>PH</h1>
     <h2>Home</h2>
-    <form>
-      <div>
-        <label>
-          Name
-          <input v-model="playerName" required />
-        </label>
+    <div>
+      <label> Name </label>
+      <div :class="{ error: v$.playerName.$errors.length }">
+        <input v-model="playerName" required />
+        <div
+          class="input-errors"
+          v-for="error of v$.playerName.$errors"
+          :key="error.$uid"
+        >
+          <div class="error-msg">Enter a valid player name</div>
+        </div>
       </div>
-      <button @click="host">Host</button>
-      <div>
-        <label>
-          Room-id
-          <input v-model="roomId" type="text" />
-        </label>
+    </div>
+    <button @click="host">Host</button>
+    <div>
+      <label> Room-id </label>
+      <div :class="{ error: v$.roomId.$errors.length }">
+        <input
+          v-model="roomId"
+          type="text"
+          pattern="^\d{1,6}$"
+          placeholder="123456"
+        />
+        <div
+          class="input-errors"
+          v-for="error of v$.roomId.$errors"
+          :key="error.$uid"
+        >
+          <div class="error-msg">Enter a six digit room numbers</div>
+        </div>
       </div>
-      <button @click="join" :disabled="playerName == ''">Join</button>
-    </form>
+    </div>
+    <button @click="join" :disabled="playerName == '' || roomId == ''">
+      Join
+    </button>
   </div>
 </template>
 
 <script>
+import useVuelidate from "@vuelidate/core";
+import { required } from "@vuelidate/validators";
+
+const validateRoomId = (roomId) => {
+  return roomId.toString().match(/(?<!\d)\d{6}(?!\d)/);
+};
+
 export default {
   name: "Home",
+  setup() {
+    return { v$: useVuelidate() };
+  },
   data() {
     return {
       playerName: "",
-      roomId: 0,
+      roomId: 123456,
     };
   },
   methods: {
     host() {
       this.$socket.emit("newRoom", { playerName: this.playerName });
     },
-    join() {
+    async join() {
+      const validInput = await this.v$.$validate();
+      if (!validInput) return;
       this.$socket.emit("joinRoom", {
         roomId: this.roomId,
         playerName: this.playerName,
@@ -54,6 +85,12 @@ export default {
       const { roomId } = data;
       this.joinLobby(roomId);
     },
+  },
+  validations() {
+    return {
+      playerName: { required },
+      roomId: { validateRoomId },
+    };
   },
 };
 </script>
