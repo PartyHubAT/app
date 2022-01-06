@@ -2,20 +2,22 @@
   <div>
     <h1>PH</h1>
     <h2>Home</h2>
-    <div>
-      <label>
-        Name
-        <input v-model="playerName" />
-      </label>
-    </div>
-    <button @click="host">Host</button>
-    <div>
-      <label>
-        Room-id
-        <input v-model="roomId" type="number" />
-      </label>
-    </div>
-    <button @click="join">Join</button>
+    <form>
+      <div>
+        <label>
+          Name
+          <input v-model="playerName" required />
+        </label>
+      </div>
+      <button @click="host">Host</button>
+      <div>
+        <label>
+          Room-id
+          <input v-model="roomId" type="text" />
+        </label>
+      </div>
+      <button @click="join" :disabled="playerName == ''">Join</button>
+    </form>
   </div>
 </template>
 
