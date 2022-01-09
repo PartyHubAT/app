@@ -13,8 +13,8 @@ createApp(App)
   .use(VueAxios, axios)
   .use(
     new VueSocketIO({
-      debug: process.env.DEBUG,
-      connection: `http://${window.location.host}:${process.env.SERVER_PORT}`,
+      debug: process.env.VUE_APP_DEBUG === "true",
+      connection: `http://${window.location.hostname}:${process.env.VUE_APP_SERVER_PORT}`,
     })
   )
   .mount("#app");
