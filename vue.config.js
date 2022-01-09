@@ -1,4 +1,6 @@
-﻿module.exports = {
+﻿const path = require("path");
+
+module.exports = {
   devServer: {
     proxy: {
       "^/": {
@@ -8,4 +10,5 @@
       },
     },
   },
+  outputDir: path.resolve(__dirname, process.env.OUTPUT_DIR),
 };
