@@ -4,7 +4,6 @@
     <iframe ref="gameContainer" id="gameContainer" :src="gameUrl"></iframe>
   </div>
 </template>
-
 <script>
 export default {
   name: "Game",

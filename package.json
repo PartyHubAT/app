@@ -41,6 +41,7 @@
     "vue": "^3.0.0",
     "vue-3-socket.io": "^1.0.4",
     "vue-axios": "^3.4.0",
+    "vue-qrcode-component": "^2.1.1",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"
   },
