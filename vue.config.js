@@ -4,7 +4,7 @@ module.exports = {
   devServer: {
     proxy: {
       "^/": {
-        target: "http://localhost:3000/",
+        target: `http://localhost:${process.env.SERVER_PORT}`,
         ws: true,
         changeOrigin: true,
       },
