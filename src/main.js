@@ -13,7 +13,7 @@ createApp(App)
   .use(VueAxios, axios)
   .use(
     new VueSocketIO({
-      debug: true,
+      debug: process.env.DEBUG,
       connection: `http://${window.location.host}:${process.env.SERVER_PORT}`,
     })
   )
