@@ -14,7 +14,7 @@ createApp(App)
   .use(
     new VueSocketIO({
       debug: true,
-      connection: "http://localhost:3000",
+      connection: `http://${window.location.host}:3000`,
     })
   )
   .mount("#app");
