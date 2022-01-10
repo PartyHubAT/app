@@ -67,12 +67,12 @@ export default {
       const validInput = await this.v$.$validate();
       if (!validInput) return;
       this.$socket.emit("joinRoom", {
-        roomId: this.roomId,
+        roomId: parseInt(this.roomId),
         playerName: this.playerName,
       });
     },
     joinLobby(roomId) {
-      this.$store.commit("joinRoom", roomId);
+      this.$store.commit("joinRoom", parseInt(roomId));
       this.$router.push("/lobby");
     },
   },
