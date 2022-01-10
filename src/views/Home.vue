@@ -77,10 +77,6 @@ export default {
     },
   },
   sockets: {
-    roomCreated(data) {
-      const { roomId } = data;
-      this.joinLobby(roomId);
-    },
     joinSuccess(data) {
       const { roomId } = data;
       this.joinLobby(roomId);
