@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHashHistory } from "vue-router";
 import Home from "../views/Home.vue";
 import Lobby from "../views/Lobby.vue";
 import Game from "../views/Game.vue";
@@ -9,7 +9,7 @@ const routes = [
     name: "Home",
     component: Home,
   },
-  { path: "/join/:roomId", name: "Join", component: Home },
+  { path: "/join/:roomId", name: "Join", component: Lobby },
   {
     path: "/lobby",
     name: "Lobby",
@@ -23,7 +23,7 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHashHistory(process.env.BASE_URL),
   routes,
 });
 
