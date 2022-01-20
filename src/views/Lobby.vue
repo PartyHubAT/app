@@ -39,7 +39,7 @@ export default {
     },
     // eslint-disable-next-line vue/return-in-computed-property
     link() {
-      return `http://${window.location.host}/join/${this.roomId}`;
+      return `http://${window.location.host}#/join/${this.roomId}`;
     },
   },
   methods: {

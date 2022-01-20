@@ -5,7 +5,13 @@
     <div>
       <label> Name </label>
       <div :class="{ error: v$.playerName.$errors.length }">
-        <input v-model="playerName" required maxlength="64" minlength="1" />
+        <input
+          v-model="playerName"
+          required
+          maxlength="64"
+          minlength="1"
+          ref="playerNameInput"
+        />
         <div
           class="input-errors"
           v-for="error of v$.playerName.$errors"
@@ -58,6 +64,11 @@ export default {
       playerName: "",
       roomId: "",
     };
+  },
+  created() {
+    if (this.$route && this.$route.params) {
+      this.roomId = this.$route.params.roomId;
+    }
   },
   methods: {
     host() {
