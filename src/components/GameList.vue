@@ -9,7 +9,7 @@
         @selected="selectGame($event)"
       />
     </div>
-    <Settings :settings="settings">
+    <Settings :settings="settings" />
   </div>
 </template>
 
@@ -38,7 +38,10 @@ export default {
         .then((res) => res.data)
         .then((data) => {
           this.games = data.games;
-          if (this.games.length >= 1) this.selectGame(this.games[0].name);
+          if (this.games.length >= 1) {
+            this.selectGame(this.games[0].name);
+            this.getSettings(this.games[0].name);
+          }
         })
         .catch((e) => console.log(e));
     },
