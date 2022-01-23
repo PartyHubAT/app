@@ -9,17 +9,21 @@
         @selected="selectGame($event)"
       />
     </div>
+    <Settings :settings="settings">
   </div>
 </template>
 
 <script>
 import GameDisplay from "./GameDisplay";
+import Settings from "./Settings";
+
 export default {
   name: "GameList",
-  components: { GameDisplay },
+  components: { GameDisplay, Settings },
   data() {
     return {
       games: [],
+      settings: null,
     };
   },
   computed: {
@@ -40,6 +44,16 @@ export default {
     },
     selectGame(gameName) {
       this.$socket.emit("selectGame", { gameName });
+    },
+    getSettings(gameName) {
+      this.axios
+        .get(`/gameSettings/${gameName}`)
+        .then((res) => res.data)
+        .then((data) => {
+          console.log(data);
+          this.settings = data;
+        })
+        .catch((e) => console.log(e));
     },
   },
   mounted() {
