@@ -53,8 +53,19 @@ export default {
         .get(`/gameSettings/${gameName}`)
         .then((res) => res.data)
         .then((data) => {
-          console.log(data);
-          this.settings = data;
+          const form = data.form;
+          const keys = Object.keys(form);
+          for (let value of keys) {
+            form[value].key = value;
+          }
+          if (data.defaultValues) {
+            const keysDefault = Object.keys(data.defaultValues);
+            for (let value of keysDefault) {
+              form[value].defaultValue = data.defaultValues[value];
+            }
+          }
+          this.settings = form;
+          console.log(this.settings);
         })
         .catch((e) => console.log(e));
     },
