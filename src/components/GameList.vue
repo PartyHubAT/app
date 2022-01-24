@@ -54,8 +54,8 @@ export default {
         .then((res) => res.data)
         .then((data) => {
           const form = data.form;
-          const keys = Object.keys(form);
-          for (let value of keys) {
+          const keysForm = Object.keys(form);
+          for (let value of keysForm) {
             form[value].key = value;
           }
           if (data.defaultValues) {
@@ -65,7 +65,6 @@ export default {
             }
           }
           this.settings = form;
-          console.log(this.settings);
         })
         .catch((e) => console.log(e));
     },
