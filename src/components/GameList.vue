@@ -47,6 +47,7 @@ export default {
     },
     selectGame(gameName) {
       this.$socket.emit("selectGame", { gameName });
+      this.getSettings(gameName);
     },
     getSettings(gameName) {
       this.axios
