@@ -1,5 +1,7 @@
 ﻿<template>
-  <button @click="selectGame">{{ game.name }}</button>
+  <button @click="selectGame" :class="{ selected: game.selected }">
+    {{ game.name }}
+  </button>
 </template>
 
 <script>
@@ -20,4 +22,8 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.selected {
+  background-color: lightyellow;
+}
+</style>

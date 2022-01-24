@@ -39,13 +39,18 @@ export default {
         .then((data) => {
           this.games = data.games;
           if (this.games.length >= 1) {
-            this.selectGame(this.games[0].name);
+            this.selectGame(this.games[0]);
             this.getSettings(this.games[0].name);
           }
         })
         .catch((e) => console.log(e));
     },
-    selectGame(gameName) {
+    selectGame(game) {
+      this.games.forEach((game) => {
+        game.selected = false;
+      });
+      game.selected = true;
+      const gameName = game.name;
       this.$socket.emit("selectGame", { gameName });
       this.getSettings(gameName);
     },
