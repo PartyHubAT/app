@@ -67,7 +67,8 @@ export default {
           if (data.defaultValues) {
             const keysDefault = Object.keys(data.defaultValues);
             for (let value of keysDefault) {
-              form[value].defaultValue = data.defaultValues[value];
+              if (data.defaultValues[value])
+                form[value].value = data.defaultValues[value];
             }
           }
           this.settings = form;
