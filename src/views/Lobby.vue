@@ -44,9 +44,7 @@ export default {
   },
   methods: {
     startGame() {
-      if (this.isHost && this.$root.gameSettings) {
-        this.$socket.emit("startGame", this.$root.gameSettings);
-      } else this.$socket.emit("startGame", {});
+      this.$socket.emit("startGame", {});
     },
   },
   sockets: {
@@ -55,7 +53,6 @@ export default {
       this.players = playerNames.map((it) => ({ name: it }));
     },
     roleChanged(data) {
-      this.$root.role = data.role;
       const { role } = data;
       this.role = role;
     },
