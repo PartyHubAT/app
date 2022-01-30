@@ -9,7 +9,7 @@
         @selected="selectGame($event)"
       />
     </div>
-    <Settings :settings="settings" />
+    <Settings :settings="settings" v-if="role === 'HOST'" />
   </div>
 </template>
 
@@ -24,6 +24,7 @@ export default {
     return {
       games: [],
       settings: null,
+      role: "GUEST",
     };
   },
   computed: {
@@ -67,8 +68,10 @@ export default {
           if (data.defaultValues) {
             const keysDefault = Object.keys(data.defaultValues);
             for (let value of keysDefault) {
-              if (data.defaultValues[value])
+              if (data.defaultValues[value]) {
+                form[value].value = "";
                 form[value].value = data.defaultValues[value];
+              }
             }
           }
           this.settings = form;
@@ -78,6 +81,7 @@ export default {
   },
   mounted() {
     this.refreshGameList();
+    this.role = this.$root.role;
   },
 };
 </script>
