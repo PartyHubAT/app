@@ -65,16 +65,21 @@ export default {
   watch: {
     settings: {
       handler: function () {
-        this.$store.commit("gameSettings", this.settings);
-        console.log("settings updated");
-        this.$root.gameSettings = this.settings;
-        // whenever the car price changes, this function will be executed
+        this.computedSettings();
       },
       deep: true,
     },
   },
-  mounted() {
-    this.$store.commit("gameSettings", this.settings);
+  mounted() {},
+  methods: {
+    computedSettings() {
+      const keys = Object.keys(this.settings);
+      let settings = {};
+      for (let value of keys) {
+        settings[value] = this.settings[value].value;
+      }
+      this.$root.gameSettings = settings;
+    },
   },
 };
 </script>
