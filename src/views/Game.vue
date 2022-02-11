@@ -25,8 +25,32 @@ export default {
       return `http://${this.gateway}:${this.port}/#/join/${this.roomId}`;
     },
   },
+  methods: {
+    addOrientationListener() {
+      if (window.DeviceOrientationEvent) {
+        window.addEventListener(
+          "deviceorientation",
+          (evt) => {
+            var iframe = document.getElementById("gameContainer").contentWindow;
+            iframe.postMessage(
+              {
+                alpha: evt.alpha,
+                beta: evt.beta,
+                gamma: evt.gamma,
+              },
+              this.gameUrl
+            );
+          },
+          false
+        );
+      } else {
+        alert("ori geht nicht");
+      }
+    },
+  },
   mounted() {
     this.$refs.gameContainer.contentWindow.socket = this.$socket;
+    this.addOrientationListener();
   },
 };
 </script>
