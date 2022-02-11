@@ -104,19 +104,23 @@ export default {
         playerName: this.playerName,
       });
     },
-    joinLobby(roomId) {
+    joinLobby(roomId, gateway, port) {
       this.$store.commit("joinRoom", roomId);
+      this.$store.commit("gateway", gateway);
+      this.$store.commit("port", port);
       this.$router.push("/lobby");
     },
   },
   sockets: {
     roomCreated(data) {
-      const { roomId } = data;
-      this.joinLobby(roomId);
+      console.log(data);
+      const { roomId, gateway, port } = data;
+      this.joinLobby(roomId, gateway, port);
     },
     joinSuccess(data) {
-      const { roomId } = data;
-      this.joinLobby(roomId);
+      console.log(data);
+      const { roomId, gateway, port } = data;
+      this.joinLobby(roomId, gateway, port);
     },
   },
   validations() {

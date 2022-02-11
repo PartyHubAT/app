@@ -1,9 +1,8 @@
 ﻿<template>
   <div>
-    <h1>PH</h1>
+    <h1>Partyhub</h1>
     <h2>Lobby {{ roomId }}</h2>
     <div id="qrcode"></div>
-    <a id="link">link</a>
     <div>
       <h3>Players</h3>
       <ul>
@@ -34,12 +33,18 @@ export default {
     roomId() {
       return this.$store.state.roomId;
     },
+    gateway() {
+      return this.$store.state.gateway;
+    },
+    port() {
+      return this.$store.state.port;
+    },
     isHost() {
       return this.role === "HOST";
     },
     // eslint-disable-next-line vue/return-in-computed-property
     link() {
-      return `http://${window.location.host}#/join/${this.roomId}`;
+      return `http://${this.gateway}:${this.port}/#/join/${this.roomId}`;
     },
   },
   methods: {
