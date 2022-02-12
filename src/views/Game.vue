@@ -44,7 +44,7 @@ export default {
           false
         );
       } else {
-        alert("ori geht nicht");
+        console.error("Setting up the device orientation failed.");
       }
     },
   },
