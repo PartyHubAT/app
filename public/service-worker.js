@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/precache-manifest.4252b436533174c016841badc89e2386.js"
+  "/precache-manifest.dea309ed1a8608c490c882f643582a8f.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "partyhub-app"});
