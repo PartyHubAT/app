@@ -1,6 +1,6 @@
 ﻿<template>
   <div class="flex justify-center w-full">
-    <div class="w-9/12">
+    <div class="w-10/12">
       <h1
         class="text-5xl font-medium leading-tight mt-8 mb-2 text-gray-700 text-center absolute left-1/2 transform -translate-x-1/2"
       >

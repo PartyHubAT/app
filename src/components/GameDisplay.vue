@@ -4,7 +4,7 @@
     :class="{ selected: game.selected }"
     class="rounded-md p-2 mr-2"
   >
-    {{ game.name }}
+    {{ game.displayName }}
   </button>
 </template>
 

@@ -34,21 +34,7 @@ export default {
   },
   methods: {
     refreshGameList() {
-      this.games = [
-        {
-          _id: "620e486f344c86b199338f49",
-          name: "exposed",
-          __v: 0,
-          selected: false,
-        },
-        {
-          _id: "620e486f344c86b199338f4a",
-          name: "heads-up",
-          __v: 0,
-          selected: true,
-        },
-      ];
-      /*this.axios
+      this.axios
         .get("/games")
         .then((res) => res.data)
         .then((data) => {
@@ -59,7 +45,7 @@ export default {
           }
           console.log(this.games);
         })
-        .catch((e) => console.log(e));*/
+        .catch((e) => console.log(e));
     },
     selectGame(game) {
       this.games.forEach((game) => {
