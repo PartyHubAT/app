@@ -19,6 +19,7 @@ export default {
   },
   methods: {
     selectGame() {
+      this.$root.selectedGame = this.game;
       this.$emit("selected", this.game.name);
     },
   },
