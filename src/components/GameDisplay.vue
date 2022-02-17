@@ -1,5 +1,9 @@
 ﻿<template>
-  <button @click="selectGame" :class="{ selected: game.selected }">
+  <button
+    @click="selectGame"
+    :class="{ selected: game.selected }"
+    class="rounded-md p-2 mr-2"
+  >
     {{ game.name }}
   </button>
 </template>
@@ -24,6 +28,7 @@ export default {
 
 <style scoped>
 .selected {
-  background-color: lightyellow;
+  color: white;
+  background-color: rgb(37, 99, 235);
 }
 </style>

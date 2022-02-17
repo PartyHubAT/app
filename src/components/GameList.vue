@@ -1,12 +1,12 @@
 ﻿<template>
   <div>
-    <h3>Games</h3>
-    <div v-if="hasGames">
+    <h3 class="inline-block mb-2 mt-4 text-gray-700 text-2xl">Games</h3>
+    <div v-if="hasGames" class="mb-2">
       <game-display
         v-for="game in games"
         :game="game"
         :key="game.name"
-        @selected="selectGame($event)"
+        @click="selectGame(game)"
       />
     </div>
     <Settings :settings="settings" v-if="role === 'HOST'" />
@@ -34,7 +34,21 @@ export default {
   },
   methods: {
     refreshGameList() {
-      this.axios
+      this.games = [
+        {
+          _id: "620e486f344c86b199338f49",
+          name: "exposed",
+          __v: 0,
+          selected: false,
+        },
+        {
+          _id: "620e486f344c86b199338f4a",
+          name: "heads-up",
+          __v: 0,
+          selected: true,
+        },
+      ];
+      /*this.axios
         .get("/games")
         .then((res) => res.data)
         .then((data) => {
@@ -43,8 +57,9 @@ export default {
             this.selectGame(this.games[0]);
             this.getSettings(this.games[0].name);
           }
+          console.log(this.games);
         })
-        .catch((e) => console.log(e));
+        .catch((e) => console.log(e));*/
     },
     selectGame(game) {
       this.games.forEach((game) => {
@@ -81,7 +96,10 @@ export default {
   },
   mounted() {
     this.refreshGameList();
-    this.role = this.$root.role;
+    //this.role = this.$root.role;
+    this.role = "HOST";
+    console.log(this.games);
+    console.log(this.role);
   },
 };
 </script>

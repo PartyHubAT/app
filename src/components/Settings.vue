@@ -1,7 +1,23 @@
 <template>
-  <div style="border: 4px solid red" v-if="settings">
-    <h3>Settings</h3>
-    <form>
+  <div v-if="settings">
+    <button
+      v-if="!isHost"
+      @click="toggleSettings"
+      class="px-6 text-center w-full py-2 border-2 border-blue-600 text-blue-600 font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out mb-2"
+    >
+      <span>Settings</span>
+      <ChevronDownIcon
+        v-if="!settingsOpen"
+        class="h-5 w-5 ml-auto iconDown"
+        aria-hidden="true"
+      />
+      <ChevronUpIcon
+        v-if="settingsOpen"
+        class="h-5 w-5 ml-auto iconUp"
+        aria-hidden="true"
+      />
+    </button>
+    <form v-if="settingsOpen" class="settingsForm">
       <div
         v-for="element in settings"
         :key="element.key"
@@ -55,8 +71,16 @@
 </template>
 
 <script>
+import { ChevronDownIcon } from "@heroicons/vue/solid";
+import { ChevronUpIcon } from "@heroicons/vue/solid";
 export default {
   name: "Settings",
+  components: { ChevronDownIcon, ChevronUpIcon },
+  data() {
+    return {
+      settingsOpen: false,
+    };
+  },
   props: {
     settings: {
       type: Object,
@@ -80,8 +104,23 @@ export default {
       }
       this.$root.gameSettings = settings;
     },
+    toggleSettings() {
+      this.settingsOpen = !this.settingsOpen;
+    },
   },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.iconDown,
+.iconUp {
+  margin-top: -20px;
+  margin-right: -15px;
+  padding-top: 5px;
+}
+
+.settingsForm {
+  transform-origin: top;
+  transition: transform 0.3s ease-in-out;
+}
+</style>

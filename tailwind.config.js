@@ -8,4 +8,10 @@ module.exports = {
     extend: {},
   },
   plugins: [],
+  extend: {
+    margin: {
+      69: "15px",
+      420: "20px",
+    },
+  },
 };

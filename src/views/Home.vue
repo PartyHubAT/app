@@ -8,9 +8,6 @@
           >H</span
         >ub {{ $route.params.id }}
       </h1>
-      <!--<h2 class="text-3xl font-medium leading-tight mt-0 mb-2 text-blue-600">
-        Home
-      </h2>-->
       <div class="flex justify-center h-screen flex-col pb-32">
         <label class="form-label inline-block mb-2 mt-4 text-gray-700 text-xl">
           Name
