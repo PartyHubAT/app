@@ -34,6 +34,7 @@ export default {
   },
   methods: {
     refreshGameList() {
+      /*
       this.games = [
         {
           _id: "620e486f344c86b199338f49",
@@ -56,19 +57,20 @@ export default {
           __v: 0,
           selected: false,
         },
-      ];
-      /*this.axios
+      ];*/
+      this.axios
         .get("/games")
         .then((res) => res.data)
         .then((data) => {
           this.games = data.games;
           if (this.games.length >= 1) {
+            this.$root.selectedGame = this.games[0];
             this.selectGame(this.games[0]);
             this.getSettings(this.games[0].name);
           }
           console.log(this.games);
         })
-        .catch((e) => console.log(e));*/
+        .catch((e) => console.log(e));
     },
     selectGame(game) {
       this.games.forEach((game) => {
@@ -76,6 +78,8 @@ export default {
       });
       game.selected = true;
       const gameName = game.name;
+      console.log("selectGame");
+      console.log(game);
       this.$socket.emit("selectGame", { gameName });
       this.getSettings(gameName);
     },
