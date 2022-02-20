@@ -65,23 +65,25 @@ export default {
   flex-grow: 1;
   border: 0;
 }
-#roomId {
-  float: right;
-}
 .title {
   position: absolute;
-  font-size: 15px;
+  font-size: 13px;
   top: 10px;
+  text-transform: uppercase;
   left: 10px;
+  letter-spacing: 1px;
   font-family: Arial, Helvetica, sans-serif;
   color: white;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.211);
 }
 .roomId {
   position: absolute;
   font-size: 15px;
-  top: 10px;
-  right: 10px;
+  top: 25px;
+  left: 10px;
   font-family: Arial, Helvetica, sans-serif;
-  color: white;
+  color: rgb(255, 255, 255);
+  font-weight: 800;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.211);
 }
 </style>
