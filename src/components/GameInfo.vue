@@ -6,20 +6,20 @@
       </h4>
       <br />
       <div class="px-3">
-        <span class="font-bold">Beschreibung:</span>
+        <span class="font-bold">Description:</span>
         <br />
         <span>{{ game.description }}</span>
       </div>
       <br />
       <div class="px-3">
-        <span class="font-bold">Spieleranzahl:</span>
+        <span class="font-bold">Number of players:</span>
         <br />
         {{ game.minPlayerCount }}-{{ game.maxPlayerCount }}
       </div>
     </div>
   </div>
   <div v-else class="w-full bg-white">
-    <h1>Bitte wähle ein Spiel aus!</h1>
+    <h1>Please select a game!</h1>
   </div>
 </template>
 
