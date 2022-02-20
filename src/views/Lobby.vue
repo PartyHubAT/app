@@ -17,7 +17,7 @@
         <div id="qrcode"></div>
         <div>
           <label class="inline-block mb-2 mt-4 text-gray-700 text-2xl">
-            Spieler ({{ players.length }})
+            Players ({{ players.length }})
           </label>
           <div class="grid grid-cols-2">
             <div
@@ -59,12 +59,16 @@
         ></div>
         <div
           id="QRContainer"
-          class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-blue-600 p-2 z-10 rounded-md drop-shadow-2xl popup"
+          class="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-blue-600 p-3 z-10 rounded-md drop-shadow-2xl popup"
           :class="
             isQRCodeVisible ? 'opacity-100 isVisible' : 'opacity-0 isInvisible'
           "
         >
-          <VueQRCodeComponent :text="link" />
+          <VueQRCodeComponent :text="link" class="w-full" />
+          <div class="text-white font-medium">
+            <p class="uppercase">Link to join</p>
+            <a :href="link">{{ link }}</a>
+          </div>
         </div>
         <div
           id="InfoContainer"
@@ -172,6 +176,10 @@ export default {
 #modalContainer,
 #InfoContainer {
   transition: all 200ms ease-in-out;
+}
+#QRContainer img {
+  margin: 0 auto;
+  padding: 20px;
 }
 .popup {
   transform: translate(-50%, -50%) scale(0);
