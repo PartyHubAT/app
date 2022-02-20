@@ -26,7 +26,7 @@
             v-for="error of v$.playerName.$errors"
             :key="error.$uid"
           >
-            <div class="error-msg">Enter a valid player name</div>
+            <div class="error-msg text-red-600">Enter a valid player name</div>
           </div>
         </div>
         <button
@@ -57,13 +57,15 @@
               v-for="error of v$.roomId.$errors"
               :key="error.$uid"
             >
-              <div class="error-msg">Enter a six digit room numbers</div>
+              <div class="error-msg text-red-600">
+                Enter a six digit room id
+              </div>
             </div>
           </div>
         </div>
         <button
           @click="join"
-          :disabled="playerName == '' || roomId == ''"
+          :disabled="roomId == ''"
           class="inline-block w-full px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
         >
           Join
