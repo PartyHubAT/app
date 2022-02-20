@@ -17,7 +17,7 @@
         <div id="qrcode"></div>
         <div>
           <label class="inline-block mb-2 mt-4 text-gray-700 text-2xl">
-            Spieler
+            Spieler ({{ players.length }})
           </label>
           <div class="grid grid-cols-2">
             <div
