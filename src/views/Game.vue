@@ -1,7 +1,5 @@
 ﻿<template>
   <div id="page">
-    <h1 class="title">PartyHub</h1>
-    <h1 class="roomId">Room-Id: {{ roomId }}</h1>
     <iframe ref="gameContainer" id="gameContainer" :src="gameUrl"></iframe>
   </div>
 </template>
@@ -64,26 +62,5 @@ export default {
 #gameContainer {
   flex-grow: 1;
   border: 0;
-}
-.title {
-  position: absolute;
-  font-size: 13px;
-  top: 10px;
-  text-transform: uppercase;
-  left: 10px;
-  letter-spacing: 1px;
-  font-family: Arial, Helvetica, sans-serif;
-  color: white;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.211);
-}
-.roomId {
-  position: absolute;
-  font-size: 15px;
-  top: 25px;
-  left: 10px;
-  font-family: Arial, Helvetica, sans-serif;
-  color: rgb(255, 255, 255);
-  font-weight: 800;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.211);
 }
 </style>
