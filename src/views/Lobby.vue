@@ -158,16 +158,6 @@ export default {
       if (this.isGameInfoVisible) this.isGameInfoVisible = false;
     };
   },
-  mounted() {
-    // this.role = "HOST";
-    /*this.players = [
-      { name: "Fabi" },
-      { name: "Ramon" },
-      { name: "Lukas" },
-      { name: "Sebo" },
-      { name: "Niko" },
-    ];*/
-  },
 };
 </script>
 
