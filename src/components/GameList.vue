@@ -34,30 +34,6 @@ export default {
   },
   methods: {
     refreshGameList() {
-      /*
-      this.games = [
-        {
-          _id: "620e486f344c86b199338f49",
-          name: "exposed",
-          displayName: "Exposed!",
-          description: "This is a game description",
-          minPlayerCount: 2,
-          maxPlayerCount: 10,
-          __v: 0,
-          selected: false,
-        },
-        {
-          _id: "620e486f344c86b199338f4a",
-          name: "heads-up",
-          displayName: "Heads Up",
-          description:
-            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam",
-          minPlayerCount: 4,
-          maxPlayerCount: 10,
-          __v: 0,
-          selected: false,
-        },
-      ];*/
       this.axios
         .get("/games")
         .then((res) => res.data)
