@@ -70,6 +70,9 @@ export default {
       this.$router.push("/game");
     },
   },
+  created() {
+    this.$socket.emit("onLobbyJoined", {});
+  },
 };
 </script>
 

@@ -100,7 +100,7 @@ export default {
       const validInput = await this.v$.$validate();
       if (!validInput) return;
       this.$socket.emit("joinRoom", {
-        roomId: this.roomId,
+        roomId: parseInt(this.roomId),
         playerName: this.playerName,
       });
     },
@@ -112,11 +112,6 @@ export default {
     },
   },
   sockets: {
-    roomCreated(data) {
-      console.log(data);
-      const { roomId, gateway, port } = data;
-      this.joinLobby(roomId, gateway, port);
-    },
     joinSuccess(data) {
       console.log(data);
       const { roomId, gateway, port } = data;
