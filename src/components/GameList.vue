@@ -1,12 +1,12 @@
 ﻿<template>
   <div>
-    <h3>Games</h3>
-    <div v-if="hasGames">
+    <h3 class="inline-block mb-2 mt-4 text-gray-700 text-2xl">Games</h3>
+    <div v-if="hasGames" class="mb-2">
       <game-display
         v-for="game in games"
         :game="game"
         :key="game.name"
-        @selected="selectGame($event)"
+        @click="selectGame(game)"
       />
     </div>
     <Settings :settings="settings" v-if="role === 'HOST'" />
@@ -40,9 +40,11 @@ export default {
         .then((data) => {
           this.games = data.games;
           if (this.games.length >= 1) {
+            this.$root.selectedGame = this.games[0];
             this.selectGame(this.games[0]);
             this.getSettings(this.games[0].name);
           }
+          console.log(this.games);
         })
         .catch((e) => console.log(e));
     },
@@ -52,6 +54,8 @@ export default {
       });
       game.selected = true;
       const gameName = game.name;
+      console.log("selectGame");
+      console.log(game);
       this.$socket.emit("selectGame", { gameName });
       this.getSettings(gameName);
     },
@@ -81,7 +85,10 @@ export default {
   },
   mounted() {
     this.refreshGameList();
-    this.role = this.$root.role;
+    //this.role = this.$root.role;
+    this.role = "HOST";
+    console.log(this.games);
+    console.log(this.role);
   },
 };
 </script>

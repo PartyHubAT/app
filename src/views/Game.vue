@@ -1,7 +1,5 @@
 ﻿<template>
   <div id="page">
-    <h1 class="title">PartyHub</h1>
-    <h1 class="roomId">Room-Id: {{ roomId }}</h1>
     <iframe ref="gameContainer" id="gameContainer" :src="gameUrl"></iframe>
   </div>
 </template>
@@ -26,31 +24,44 @@ export default {
     },
   },
   methods: {
-    addOrientationListener() {
-      if (window.DeviceOrientationEvent) {
-        window.addEventListener(
-          "deviceorientation",
-          (evt) => {
-            var iframe = document.getElementById("gameContainer").contentWindow;
-            iframe.postMessage(
-              {
-                alpha: evt.alpha,
-                beta: evt.beta,
-                gamma: evt.gamma,
-              },
-              this.gameUrl
-            );
-          },
-          false
-        );
-      } else {
-        console.error("Setting up the device orientation failed.");
-      }
+    returnToLobby() {
+      this.$router.push("/").then(() => window.location.reload());
+    },
+    onOrientationChanged(evt) {
+      this.$refs.gameContainer.contentWindow.postMessage(
+        {
+          alpha: evt.alpha,
+          beta: evt.beta,
+          gamma: evt.gamma,
+        },
+        this.gameUrl
+      );
     },
   },
   mounted() {
     this.$refs.gameContainer.contentWindow.socket = this.$socket;
-    this.addOrientationListener();
+  },
+
+  created() {
+    window.addEventListener("message", this.returnToLobby, false);
+    if (window.DeviceOrientationEvent) {
+      window.addEventListener(
+        "deviceorientation",
+        this.onOrientationChanged,
+        false
+      );
+    } else {
+      alert("Device does not support device-orientation");
+    }
+  },
+
+  unmounted() {
+    window.removeEventListener("message", this.returnToLobby, false);
+    window.removeEventListener(
+      "deviceorientation",
+      this.onOrientationChanged,
+      false
+    );
   },
 };
 </script>
@@ -61,27 +72,9 @@ export default {
   flex-direction: column;
   height: 100vh;
 }
+
 #gameContainer {
   flex-grow: 1;
   border: 0;
-}
-#roomId {
-  float: right;
-}
-.title {
-  position: absolute;
-  font-size: 15px;
-  top: 10px;
-  left: 10px;
-  font-family: Arial, Helvetica, sans-serif;
-  color: white;
-}
-.roomId {
-  position: absolute;
-  font-size: 15px;
-  top: 10px;
-  right: 10px;
-  font-family: Arial, Helvetica, sans-serif;
-  color: white;
 }
 </style>

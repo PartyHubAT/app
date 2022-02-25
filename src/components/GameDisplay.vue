@@ -1,6 +1,10 @@
 ﻿<template>
-  <button @click="selectGame" :class="{ selected: game.selected }">
-    {{ game.name }}
+  <button
+    @click="selectGame"
+    :class="{ selected: game.selected }"
+    class="rounded-md p-2 mr-2"
+  >
+    {{ game.displayName }}
   </button>
 </template>
 
@@ -15,6 +19,7 @@ export default {
   },
   methods: {
     selectGame() {
+      this.$root.selectedGame = this.game;
       this.$emit("selected", this.game.name);
     },
   },
@@ -24,6 +29,7 @@ export default {
 
 <style scoped>
 .selected {
-  background-color: lightyellow;
+  color: white;
+  background-color: rgb(37, 99, 235);
 }
 </style>

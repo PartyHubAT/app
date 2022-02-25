@@ -1,7 +1,6 @@
 ﻿<template>
   <div>
-    <h3>Game</h3>
-    <p>{{ selectedGame }}</p>
+    <p>Wait until the host selected a game!</p>
   </div>
 </template>
 
